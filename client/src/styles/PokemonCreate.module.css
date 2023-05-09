@@ -1,0 +1,182 @@
+.Create{
+  width: 100%;
+    min-height: 100vh;
+  background: radial-gradient(circle, rgb(55, 106, 187) 0%, rgba(244, 244, 247, 0.89) 100%);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.cardCreate {
+  background-color: #fff;
+  width: 600px;
+  min-height: 420px;
+  border-radius: 50px;
+  position: relative;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  background-color: #e3e3ff;
+}
+
+.contGral {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.redTitle {
+  background-color: #4e47b9;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  border-radius: 50px 50px 0px 0px;
+  align-items: center;
+  gap: 1rem;
+}
+.poke {
+  height: 40px;
+  margin-left: 40px;
+}
+.title {
+  color: #fff;
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  position: relative;
+}
+.types {
+  display: flex;
+  list-style: none;
+  gap: 0.8rem;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+.button {
+  height: 30px;
+  width: 215px;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  color: #000;
+  font-family: "Rubik", sans-serif;
+  cursor: pointer;
+  border: none;
+  margin-top: 5px;
+  
+}
+.button:disabled {
+  background-color: #f8f7f7;
+  color: #cfcfcf;
+  border: none;
+  margin-top: 5px;
+  cursor: default;
+}
+
+.deleteButton {
+  border-radius: 10px;
+  border: none;
+  background-color: #09071a00;
+  color: #dd1111;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+}
+.select {
+  margin-top: 5px;
+  padding-left: 15px;
+  height: 30px;
+  width: 220px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f8f7f7;
+  font-family: "Rubik", sans-serif;
+}
+
+
+.select:focus {
+  outline: none;
+}
+.options {
+  background-color: #f8f7f7;
+  font-family: "Rubik", sans-serif;
+}
+.oak {
+  height: 550px;
+  position: absolute;
+  right: -250px;
+  top:70px
+}
+.buttonHome {
+    cursor: pointer;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    font-family: "Rubik", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .error {
+    font-family: "Rubik", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    color: #eb544d;
+  }
+  
+
+  
+  .navBar {
+    background-color: #4d5deb;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+back{
+    text-align:center
+}
+
+.form {
+  padding-top: 20px;
+  display: flex;
+  font-family: "Rubik", sans-serif;
+  font-weight: 200;
+  font-size: 15px;
+}
+
+.izq {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 40px;
+  gap: 1.3rem;
+}
+
+
+.der {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 40px;
+  gap: 1.3rem;
+}
+
+
+.inputs {
+  margin-top: 5px;
+  padding-left: 15px;
+  height: 30px;
+  width: 200px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f8f7f7;
+}
+
+.inputs:focus {
+  outline: none;
+}

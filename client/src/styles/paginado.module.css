@@ -1,0 +1,43 @@
+.contCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+    /* gap: 20px; */
+    flex-grow: 1;
+    padding-inline: 1rem;
+}
+
+.contCards li{
+    display: inline;
+}
+
+.paginado {
+    font-family: Arial;
+    font-size:20px;
+    text-decoration: none;
+    float:left;
+    padding: 10px;
+    background-color:#c0b4b400;
+}
+
+.paginado  a:hover {
+    background-color:red;
+    margin-top:-2px;
+    padding-bottom:8px;
+    }
+
+    .button {
+        font-size: 1.2rem;
+        background-color: #e3e3ff
+        
+    }
+    .button:active {
+        transform: translate(0.05em, 0.05em);
+        box-shadow: 0.05em 0.05em;
+    }
+
+    .button:hover {
+        transform: translate(-0.05em, -0.05em);
+        box-shadow: 0.15em 0.15em;
+    }

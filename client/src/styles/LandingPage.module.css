@@ -1,0 +1,38 @@
+
+.landing{
+    background-image: url(./img/pokebolas.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: auto;
+    font-size: 25px;
+    color:  #faf60e;
+    font-family: 'Mouse Memoirs', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    padding: 1.5em 1em 3em 4em;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    outline: none;
+    margin-top: 2em;
+    background-image: url('./img/pokebola3.png');
+    background-size: cover;
+    background-position: center;
+    background-color: aqua;
+  }
+  
+
+  
+  .button:active {
+    transform: translateY(-1px);
+  }
+
+  .button:hover{
+    background-color: #e3e3ff;
+  }
