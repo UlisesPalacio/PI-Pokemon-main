@@ -29,7 +29,8 @@
 
     .button {
         font-size: 1.2rem;
-        background-color: #e3e3ff
+        background-color: #e3e3ff;
+        border-radius: 5px;
         
     }
     .button:active {

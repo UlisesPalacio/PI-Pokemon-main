@@ -10,4 +10,6 @@ export const GET_TYPES = 'GET_TYPES'
 export const GET_NAME_POKEMONS = 'GET_NAME_POKEMONS'; 
 export const POST_POKEMON ="POST_POKEMON";
 export const SET_ERROR = "SET_ERROR";
+export const DELETE_POKEMON = "DELETE_POKEMON";
+export const RESET_POKEDETAIL = "RESET_POKEDETAIL";
 

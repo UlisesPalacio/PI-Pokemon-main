@@ -21,7 +21,7 @@ const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(process.env.PORT, () => {
     //force en true => creamos 5 pokemons,cuando cortemos el servidor no tenemos mas los pokemons creados.(se borra la base de datos cada vez que se corta el servidor)
     console.log("%s listening at 3001"); // eslint-disable-line no-console

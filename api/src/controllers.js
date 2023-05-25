@@ -5,7 +5,8 @@ const { Pokemon, Type } = require("./db");
 //INFORMACION QUE VIENE DE LA API.
 
 const getApiInfo = async () => {
-  const primerosPokemons = await axios.get("https://pokeapi.co/api/v2/pokemon");
+  const primerosPokemons = await axios.get("https://pokeapi.co/api/v2/pokemon");//Axios es una biblioteca de JavaScript que proporciona una interfaz simple y fácil de usar para realizar solicitudes HTTP desde el navegador o desde Node.js,
+                                                                                // con compatibilidad para Promises y una serie de características útiles para manejar solicitudes y respuestas de manera eficiente.
   const segundosPokemons = await axios.get(primerosPokemons.data.next);
   const tercerosPokemons = await axios.get(segundosPokemons.data.next);
   const cuartosPokemons = await axios.get(tercerosPokemons.data.next);
@@ -21,7 +22,7 @@ const getApiInfo = async () => {
   ];
 
   const infoPokemons = await Promise.all(
-    //Una Promise que se cumplirá cuando todas las promesas del argumento iterable hayan sido cumplidas, o bien se rechazará cuando alguna de ellas se rechace.
+                                                //Una Promise que se cumplirá cuando todas las promesas del argumento iterable hayan sido cumplidas, o bien se rechazará cuando alguna de ellas se rechace.
     allPokemons.map(async (pokemon) => {
       let infoDePokemon = await axios.get(pokemon.url);
       return {
@@ -48,14 +49,14 @@ const getDbInfo = async () => {
   const pokemonsDB = await Pokemon.findAll({
     include: {
       model: Type,
-      attributes: ["name"],//le pasamos solo el name treme solo que que tiene el atributo y no todo lo que tiene el modelo
+      attributes: ["name"],                                                         //le pasamos solo el name treme solo lo que tiene el atributo y no todo lo que tiene el modelo
       through: {
         attributes: [],
       },
     },
   });
 
-  const pokemonsMapeados = pokemonsDB?.map((pokemon) => {
+  const pokemonsMapeados = pokemonsDB?.map((pokemon) => {                 //devolvemos objetos mas simplesque contineen solo datos relevantes
     const { types } = pokemon;
     const pokemonData = {
       ...pokemon.dataValues,

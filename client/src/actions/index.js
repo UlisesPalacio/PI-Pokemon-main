@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_POKEMONS, GET_TYPES,POKE_DETAIL, CLEAN_DETAIL,FILTER_BY_TYPE,FILTER_CREATED,RESET_POKEMONS,ORDER_BY_NAME, ORDER_BY_ATTACK,GET_NAME_POKEMONS,SET_ERROR } from "./action-types";
+import { GET_POKEMONS, GET_TYPES,POKE_DETAIL, CLEAN_DETAIL,FILTER_BY_TYPE,FILTER_CREATED,RESET_POKEMONS,ORDER_BY_NAME, ORDER_BY_ATTACK,GET_NAME_POKEMONS,SET_ERROR, RESET_POKEDETAIL } from "./action-types";
 //import { bindActionCreators } from "redux";
 
 export function getPokemons() {
@@ -28,7 +28,7 @@ export const getPokeDetail =(id)=>{
   }
 }
 
-export const cleanDetail =()=>{ //cliandetail no es mas que una funcion que retorna un objeto (3)
+export const cleanDetail =()=>{                         //cliandetail no es mas que una funcion que retorna un objeto (3)
   return {type:CLEAN_DETAIL}
 }
 
@@ -49,6 +49,11 @@ export function resetPokemons() {
     type: RESET_POKEMONS,
   };
 }
+export function resetPokeDetail() {
+  return {
+    type: RESET_POKEDETAIL,
+  };
+}
 
 export function setError(payload) {
   return {
@@ -56,6 +61,33 @@ export function setError(payload) {
     payload,
   };
 }
+
+{/*/export function deletePokemon(pokemonId) {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`/delete/${pokemonId}`);
+      return dispatch({
+        type: POKE_DETAIL,
+      });
+    } catch (error) {
+      console.log("No puedo eliminar el pokemon", error);
+    }
+  };
+}*/}
+export function deletePokemon(pokemonId) {
+  return new Promise((resolve, reject) => {
+    axios.delete(`/delete/${pokemonId}`)
+      .then(() => {
+        resolve({ type: POKE_DETAIL });
+        
+      })
+      .catch(error => {
+        console.log("No puedo eliminar el pokemon", error);
+        reject(error);
+      });
+  });
+}
+
 
 export function getNamePokemons(payload){//se puede llamar name o payload
   return async function(dispatch){

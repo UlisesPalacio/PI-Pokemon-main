@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* el Switch va a envolver a cada ruta y va de ruta a ruta. Si el link no existe te toma el ultimo */}
+                                                                                                            {/* el Switch va a envolver a cada ruta y va de ruta a ruta. Si el link no existe te toma el ultimo */}
         
           <Route exact path="/" component={LandingPage}></Route>
           <Route path="/home" component={Home}></Route>

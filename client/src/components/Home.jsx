@@ -19,7 +19,7 @@ export default function Home() {
     const error = useSelector((state) => state.error);
 
     //estados LOCALES: -.-
-    const[orden,setOrden] = useState('');  //estado local vacio
+    const[orden,setOrden] = useState('');  //estado local vacio //set cambia cuadno se hace click para despachar
     const [currentPage,setCurrentPage] = useState(1);  //guarda en un estado local la pagina actual y me la setea,lo pongo en 1 por que siempre se arranca desde la primera pagina.
     const [pokemonsPerPage] = useState(12);  //cuantos pokemones tengo por pagina.
     const indexOfLastPokemon = currentPage * pokemonsPerPage;    //indice del ultimo pokemon =>>>>> 12 que es mi pagina x mis personajes por pagina  esto da 12 1 pag por cant pokes osea 12 1x12=12
@@ -33,11 +33,12 @@ export default function Home() {
         setCurrentPage(pageNumber);  //setear la pagina en ese numero de pagina.
     }
 
-    useEffect(() => {  //el useEffect me va llenando el estado cuando se monta el componente.
-        dispatch(getPokemons())  //es lo mismo que el mapDispatchToProps.
+    useEffect(() => {                                                       //el useEffect me va llenando el estado cuando se monta el componente.
+        dispatch(getPokemons())                                                 //es lo mismo que el mapDispatchToProps.
         dispatch(getTypes());
-    }, [dispatch])  //array vacio por que no depende nada y se monta tranquilamente.
-    function handleClick(event) {       //tema botones,clicks o cosas que ejecuten cosas,siempre arriba.
+    }, [dispatch])                              //array vacio por que no depende nada y se monta tranquilamente.
+    
+    function handleClick(event) {                                                                       //tema botones,clicks o cosas que ejecuten cosas,siempre arriba.
         event.preventDefault();   // preventDefault para que no se me rompan las cosas y no se recargue la pagina.CADA VEZ QUE RECARGAMOS LOS ESTADOS DE REDUX VUELVEN A CARGARSE SI TENEMOS UN useEffect.
         dispatch(setError(false));
         dispatch(getPokemons());
@@ -47,7 +48,7 @@ export default function Home() {
         if (event.target.value === "asc" || event.target.value === "desc") {
             event.preventDefault();
             dispatch(orderByName(event.target.value));
-            setCurrentPage(1);//seteamos el ordenamiento en la pag 1
+            setCurrentPage(1);                                                          //seteamos el ordenamiento en la pag 1
             setOrden(`Ordenado ${event.target.value}`)  //cuando seteo la pagina me modifique el estado local y se renderize
         }
         if (event.target.value === "fue" || event.target.value === "deb") {
@@ -64,21 +65,21 @@ export default function Home() {
         } else {
         dispatch(filterByPokemonsType(event.target.value));
         }
-        // dispatch(setCurrentPage(1)); esta es otra forma de solucionar lo del setcurrentpage
+                                                                                                 // dispatch(setCurrentPage(1)); esta es otra forma de solucionar lo del setcurrentpage
     }
     function handleFilterCreated(event) {
         dispatch(filterCreated(event.target.value));//la action es el target value es lo que viene en el select y como me llega de la action por el payload 
     }
     return (
         <div className={style.contHome}>
-           <div className={style.navBar}>
+        <div className={style.navBar}>
             <div className={style.navIzq}>
                 <Link to="/" >
                     <img src={logo} alt="logo" className={style.logo}></img>
                 </Link>
             </div>
-           <div className={style.navDer}>
-          
+        <div className={style.navDer}>
+
             <Link to='/post' className={style.buttonCreate}>Create Pokemon</Link>
 
             <button onClick={event => { handleClick(event) }}  className={style.buttonRec}>
@@ -89,8 +90,8 @@ export default function Home() {
             ></img>
             </button>
             </div>
-            </div>     
-           <div>
+            </div>    
+        <div>
             <div className={style.filters}>
                 <select onChange={(event) => handleSort(event)} className={style.order}>
                     <option value='asc'>Ascending</option> {/*lo que hace el value es permitirme acceder y preguntar si dentro del select si el value es asc o desc y hacer tal cosa.*/}
@@ -141,9 +142,12 @@ export default function Home() {
                         )
                     })
                 }
-               </div> 
+            </div> 
             </div>
         </div>
     )
 }
+
+
+
 

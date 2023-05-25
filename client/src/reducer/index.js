@@ -8,7 +8,9 @@ import { GET_POKEMONS,
         ORDER_BY_ATTACK,
         RESET_POKEMONS,
         POST_POKEMON,
-        SET_ERROR } from "../actions/action-types";
+        SET_ERROR,
+        DELETE_POKEMON,
+      RESET_POKEDETAIL } from "../actions/action-types";
 
 const initialState = {
   pokemons: [],
@@ -32,13 +34,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         pokeDetail:action.payload
         };
-  case CLEAN_DETAIL:  //el caso de que sea clean detail le voy a retornar una copia de todo lo que habia en el estado y gameDetail le pisa el valor con un objeto vacio
+  case CLEAN_DETAIL:  //el caso de que sea clean detail le voy a retornar una copia de todo lo que habia en el estado y pokeDetail le pisa el valor con un objeto vacio
       return { //(4) //el reducer empieza a evaluar, te doy una copia del estado para no perder el anterior 
                 ...state,
-                pokeDetail:{} //y gameDetail ahora va  a estar vacio 
+                pokeDetail:{} //y pokeDetail ahora va  a estar vacio 
             };
   case FILTER_BY_TYPE:
-      //la logica va antes del return,si va adentro se rompe.
+                                                    //la logica va antes del return,si va adentro se rompe.
       const allPokemons = state.allPokemons; //cuando se filtre primero todos los pokemons siempre van a ser el array que tiene todo => allPokemons.
       const typeFiltered =
         action.payload === "All"
@@ -51,12 +53,17 @@ function rootReducer(state = initialState, action) {
         error: false,
       };
   case RESET_POKEMONS:
-        const allPokemonitos = [...state.allPokemons];
+        const allPokemonsTotal = [...state.allPokemons];
         return {
         ...state,
-        pokemons: allPokemonitos,
+        pokemons: allPokemonsTotal,
         currentPage: 1,
         error: false,
+      };
+      case RESET_POKEDETAIL:
+        return {
+        ...state,
+        
       };
   case SET_ERROR:
         return {
@@ -75,8 +82,12 @@ function rootReducer(state = initialState, action) {
     };
   case POST_POKEMON:
     return{
-        ...state //el post lo unico que hace es devolverme el estado como esta por que yo voy a crearlo en una ruta nueva 
+        ...state                        //el post lo unico que hace es devolverme el estado como esta por que yo voy a crearlo en una ruta nueva 
       }
+  case DELETE_POKEMON:
+    return {
+        ...state,
+      };    
   case FILTER_CREATED:
       const createdFilter =
         action.payload === "Created"

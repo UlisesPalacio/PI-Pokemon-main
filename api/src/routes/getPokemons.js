@@ -1,4 +1,4 @@
-const getPokemons = require("express").Router();
+const getPokemons = require("express").Router();//Escritura de manejadores de peticiones con diferentes verbos HTTP en diferentes caminos URL (rutas).9 mar 2023
 const { getAllPokemons } = require("../controllers");
 
 //aca asumimos que ya tenemos un /pokemons por eso no le pasamos nada.si yo le paso ahora /pokemons seria /pokemonspokemons.
@@ -30,78 +30,6 @@ getPokemons.get("/:id", async (req, res) => {
   res.end();
 });
 
-//DELETE Y PUT
 
-// deletePokemons.delete("/delete/:id", async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const pokemonDelete = await Pokemon.findByPk(id);
-//     if (!pokemonDelete) {
-//       res.status(400).send("No existe el pokemon que deseas eliminar");
-//     } else {
-//       pokemonDelete.destroy();
-//       return res.status(200).send("Pokemon eliminado correctamente");
-//     }
-//   } catch (error) {
-//     res.status(400).json({ error: error.message }, "Entré al error de delete");
-//   }
-// });
-
-// putPokemons.put("/edit/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const {
-//       name,
-//       hp,
-//       attack,
-//       defense,
-//       speed,
-//       height,
-//       weight,
-//       image,
-//       types,
-//       createdInDb,
-//     } = req.body;
-//     if (id) {
-//       let urlDeImagen = "";
-
-//       if (image) {
-//         urlDeImagen = image;
-//       } else {
-//         urlDeImagen =
-//           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/800px-Pokebola-pokeball-png-0.png";
-//       }
-
-//       if (name) {
-//         const findPokemon = await Pokemon.findByPk(id);
-//         await findPokemon.update(
-//           {
-//             name,
-//             hp,
-//             attack,
-//             defense,
-//             speed,
-//             height: Number(height),
-//             weight: Number(weight),
-//             image: urlDeImagen,
-//             createdInDb,
-//           },
-//           { where: { id: id } }
-//         );
-
-//         const typeDb = await Type.findAll({
-//           where: { name: types },
-//         });
-
-//         await findPokemon.setTypes(typeDb);
-//         res.status(200).send("Pokemon modificado con exito");
-//       } else {
-//         res.status(400).send("Faltaron datos para modificar el pokemon");
-//       }
-//     }
-//   } catch (error) {
-//     console.log("entre al error del put", error);
-//   }
-// });
 
 module.exports = getPokemons;

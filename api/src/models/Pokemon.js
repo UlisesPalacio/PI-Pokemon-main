@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
+      allowNull: false,//campo requerido 
       primaryKey: true,
     },
     name: {
@@ -20,19 +20,19 @@ module.exports = (sequelize) => {
     },
     hp: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      validate: { min: 1, max: 150 },
     },
     attack: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      validate: { min: 1, max: 150 },
     },
     defense: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      validate: { min: 1, max: 150 },
     },
     speed: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      validate: { min: 1, max: 150 },
     },
     height: {
       type: DataTypes.FLOAT,

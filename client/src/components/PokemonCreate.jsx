@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from "react";
 import {Link,useHistory} from "react-router-dom"
-import {postPokemon,getTypes} from "../actions/index"
+import {postPokemon,getTypes,resetPokemons} from "../actions/index"
 import {useDispatch,useSelector} from "react-redux"
 import style from "../styles/PokemonCreate.module.css"
 import oak from "../styles/img/oak2.png"
@@ -78,8 +78,7 @@ export default function PokemonCreate(){
 
     function handleSubmit(event){
         event.preventDefault()
-        dispatch(postPokemon(input)); //despachamos la accion
-        alert("Successfully created pokemon");
+      
         setInput({//de esta forma seteamos el input a 0 una ves creado el nuevo pokemon
         name:"",
         image:"",
@@ -92,6 +91,9 @@ export default function PokemonCreate(){
         types:[]
 
         })
+        
+        dispatch(postPokemon(input)); //despachamos la accion
+        alert("Successfully created pokemon");
         history.push("/home");//cuando termines de crear el personaje agarra y llevame al home
     }
 
@@ -106,7 +108,9 @@ export default function PokemonCreate(){
     },[])
 
     return( //aca viene el renderizado metemos todo en un div
+        
         <div className={style.Create}>
+            
                 <div className={style.navBar}>
                     <Link to="/home"><button  className={style.buttonHome}>Back to home</button></Link>
                 </div>  
@@ -143,6 +147,7 @@ export default function PokemonCreate(){
                                         className={style.inputs}
                                         onChange={(event)=>handleChange(event)}
                                     />
+                                    
                                 </div>
                                 <div>hp:</div>
                                 <div>
@@ -153,6 +158,7 @@ export default function PokemonCreate(){
                                         className={style.inputs}
                                         onChange={(event)=>handleChange(event)}
                                         />
+                                         
                                 </div>
                                 <div>attack:</div>
                                 <div>
@@ -163,6 +169,9 @@ export default function PokemonCreate(){
                                         className={style.inputs}
                                         onChange={(event)=>handleChange(event)}
                                         />
+                                        {errors.attack && (
+                                        <div className={style.error}>{errors.attack}</div>
+                                    )}
                                 </div>
                                 <div>defense:</div>
                                 <div>
@@ -194,10 +203,11 @@ export default function PokemonCreate(){
                                         </option>
                                         ))}         
                                     </select>
-
+                                    
                                     <ul className={style.types}>
                                             {input.types.map(event=>// (siempre que hacemos un map hay que hacer un div )esto es el estado local y este estado local va a tener todas las ocupaciones que yo valla guaardando enconces mapeamelo
                                                 <div className="divTyp">
+                                                    
                                                     <li key={event} className={style.types}>
                                                         {event[0].toUpperCase() + event.slice(1)}
                                                         <button  onClick={()=>handleDelete(event)} className={style.deleteButton} >X</button>
@@ -239,7 +249,9 @@ export default function PokemonCreate(){
                                                 className={style.inputs}
                                                 onChange={(event)=>handleChange(event)}
                                             />
+                                            
                                         </div>    
+                                        
                                         <button type="submit" className={style.button}>Create</button>
                                 </div> 
                             </div>     

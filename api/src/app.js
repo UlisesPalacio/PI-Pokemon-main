@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const getPokemons = require("./routes/getPokemons");
 const postPokemons = require("./routes/postPokemons");
 const getTypes = require("./routes/getTypes");
+const PokeDelete = require("./routes/pokeDelete");
 
 require("./db.js");
 
@@ -34,6 +35,7 @@ server.use((req, res, next) => {
 server.use("/pokemons", getPokemons); //si la ruta dice /pokemons se va para getPokemons por eso no hace falta ahi pasarle /pokemons.
 server.use("/post", postPokemons);
 server.use("/types", getTypes);
+server.use("/delete",PokeDelete);
 
 // Error catching endware.
 server.use((err, req, res, next) => {
