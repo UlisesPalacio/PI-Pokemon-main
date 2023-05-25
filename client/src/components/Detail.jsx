@@ -9,7 +9,7 @@ import loading from "../styles/img/pokebola3.png";
 
 const PokeDetail =()=>{
     const dispatch = useDispatch();// Es una función que permite lanzar acciones (actions) al store, con la intención de afectar el estado
-    const {id}=useParams(); //use params me retorna un objeto por eso podemos hacer distractori
+    const {id}=useParams(); //use params me retorna un objeto por eso podemos hacer distractory
     const history = useHistory();
     const pokeDetail = useSelector((state)=>state.pokeDetail)//es un Hook que nos permite extraer datos del store de Redux utilizando una función selectora
     //dodmount unmount update siclos de vida en el useEffect
@@ -56,15 +56,29 @@ const PokeDetail =()=>{
                             </div> 
                         </div> 
                             <div className={style.contDer}>
-                            
+                            <div className={style.stats}>
                                     <div className={style.number}>hp</div>
                                     <p>{pokeDetail[0]?.hp}</p>
+
+                                <div className={style.filaStat}> 
                                     <div className={style.number}>attack</div>
-                                    <p>{pokeDetail[0]?.attack}</p>
-                                    <div className={style.stats}>
+                                    <div className={style.number}>
+                                        {pokeDetail[0].attack}
+                                    </div>
+                                        <div className={style.barra}>
+                                        <div
+                                            className={style.attack}
+                                            style={{
+                                                width: `${(pokeDetail[0].attack / 150) * 100}%`,
+                                                    }}
+                                                    ></div>
+                                                    </div>
+                                </div>     
+                                
+                                    
                                     <div className={style.filaStat}>
 
-                                    <div>defense</div>
+                                    <div className={style.number}>defense</div>
                                     <div className={style.number}>
                                         {pokeDetail[0].defense}
                                     </div>
@@ -77,8 +91,9 @@ const PokeDetail =()=>{
                                             ></div>
                                     </div>
                                     </div> 
+                                    </div>   
 
-                                    </div>
+                                
 
                                     <div className={style.number}>speed</div>
                                     <p>{pokeDetail[0]?.speed}</p>

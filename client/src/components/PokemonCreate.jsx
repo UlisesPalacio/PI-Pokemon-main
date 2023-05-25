@@ -158,7 +158,6 @@ export default function PokemonCreate(){
                                         className={style.inputs}
                                         onChange={(event)=>handleChange(event)}
                                         />
-                                         
                                 </div>
                                 <div>attack:</div>
                                 <div>
@@ -205,12 +204,12 @@ export default function PokemonCreate(){
                                     </select>
                                     
                                     <ul className={style.types}>
-                                            {input.types.map(event=>// (siempre que hacemos un map hay que hacer un div )esto es el estado local y este estado local va a tener todas las ocupaciones que yo valla guaardando enconces mapeamelo
+                                            {input.types.map(event=>// (siempre que hacemos un map hay que hacer un div )esto es el estado local y este estado local va a tener todas los tipos que yo valla guaardando enconces mapeamelo
                                                 <div className="divTyp">
                                                     
                                                     <li key={event} className={style.types}>
                                                         {event[0].toUpperCase() + event.slice(1)}
-                                                        <button  onClick={()=>handleDelete(event)} className={style.deleteButton} >X</button>
+                                                    
                                                     </li>
                                                 </div> 
                                             )}
