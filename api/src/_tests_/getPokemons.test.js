@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 const { getAllPokemons } = require("../controllers");
 
-describe("GET /pokemons/:id", () => {
+describe("GET /pokemons/:id", () => {//en los it decimos que queremos teatear ademas tienen una callback
   it("responds with 200 when given a valid id", async () => {
     const pokemonsTotal = await getAllPokemons();
     const id = pokemonsTotal[0].id;

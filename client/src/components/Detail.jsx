@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useParams,Link,useHistory } from "react-router-dom";
 import style from "../styles/Detail.module.css"
 import loading from "../styles/img/pokebola3.png";
-
+import "../styles/style.css"
 
 
 const PokeDetail =()=>{
@@ -24,7 +24,7 @@ const PokeDetail =()=>{
 
     const handlerDelete = () => {
         dispatch(deletePokemon(id));
-        alert("Pokemon eliminado");
+        alert("pokemon eliminado");
         history.push("/home");
         dispatch(getPokemons());
     };
@@ -50,15 +50,33 @@ const PokeDetail =()=>{
                                 <div className={style.name}>
                                     <h1>{pokeDetail[0]?.name}</h1>
                                 </div>     
-                                <div className={style.number}>Types:</div>
-                                <p className={style.types}>{pokeDetail[0]?.types.join(" ")}</p>
+                                <ul className={style.types}>
+                                {pokeDetail[0].types.map((t) => (
+                                <div key={pokeDetail[0].name + t} className={t}>
+                                    {t.toUpperCase()}
+                                </div>
+                            ))}
+                            </ul>
                                 <div className={style.id}>ID #{pokeDetail[0]?.id}</div>
                             </div> 
                         </div> 
                             <div className={style.contDer}>
                             <div className={style.stats}>
+                            <div className={style.filaStat}>
                                     <div className={style.number}>hp</div>
-                                    <p>{pokeDetail[0]?.hp}</p>
+                                    <div className={style.number}>
+                                        {pokeDetail[0].hp}
+                                    </div>
+                                        <div className={style.barra}>
+                                        <div
+                                            className={style.hp}
+                                            style={{
+                                                width: `${(pokeDetail[0].hp / 150) * 100}%`,
+                                                    }}
+                                                    ></div>
+                                                    </div>
+                            </div>                        
+                                
 
                                 <div className={style.filaStat}> 
                                     <div className={style.number}>attack</div>
@@ -74,7 +92,7 @@ const PokeDetail =()=>{
                                                     ></div>
                                                     </div>
                                 </div>     
-                                
+                            
                                     
                                     <div className={style.filaStat}>
 
@@ -91,12 +109,37 @@ const PokeDetail =()=>{
                                             ></div>
                                     </div>
                                     </div> 
-                                    </div>   
+                    
 
+                                    <div className={style.filaStat}>
+                                        <div className={style.number}>speed</div>
+                                        <div className={style.number}>
+                                        {pokeDetail[0].speed}
+                                    </div>
+                                    <div className={style.barra}>
+                                        <div
+                                            className={style.speed}
+                                            style={{
+                                                width: `${(pokeDetail[0].speed / 150) * 100}%`,
+                                            }}
+                                            ></div>
+                                    </div>
+                                    
+                                    </div>
+                                    {pokeDetail[0].createdInDb && ( 
+                                    <div className={style.buttons}>
+                                    <Link to={`/home`}>
+                                    <button
+                                    onClick={(e) => handlerDelete(e)}
+                                        className={style.deleteButton}
+                                        >
+                                        Delete Pokemon
+                                    </button>
+                                    </Link>
                                 
-
-                                    <div className={style.number}>speed</div>
-                                    <p>{pokeDetail[0]?.speed}</p>
+                                </div>
+                                )}
+                                </div>  
                                 
                                 <div className={style.alturaPeso}>
                                     <div className={style.medidas}>
@@ -108,18 +151,7 @@ const PokeDetail =()=>{
                                         <p>{pokeDetail[0]?.weight}</p>
                                     </div>    
                                 </div>
-                                {pokeDetail[0].createdInDb && ( 
-                                    <div className={style.buttons}>
-                                    
-                                    <button
-                                    onClick={(e) => handlerDelete(e)}
-                                        className={style.deleteButton}
-                                        >
-                                        Delete Pokemon
-                                    </button>
-                                
-                                </div>
-                                )}
+                            
                                 
                             
                             </div>    

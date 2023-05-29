@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from "react";
 import {Link,useHistory} from "react-router-dom"
-import {postPokemon,getTypes,resetPokemons} from "../actions/index"
+import {postPokemon,getTypes,resetPokemons,getPokemons} from "../actions/index"
 import {useDispatch,useSelector} from "react-redux"
 import style from "../styles/PokemonCreate.module.css"
 import oak from "../styles/img/oak2.png"
@@ -51,7 +51,24 @@ export default function PokemonCreate(){
         height:"",
         weight:"",
         types:[]//va en un array sino no vay a poder poner mas de uno
-    })              
+    })
+    
+    
+    let btnDisabled =
+    !(
+      input.name.length &&
+      input.hp.length &&
+      input.attack.length &&
+      input.defense.length &&
+      input.speed.length &&
+      input.types.length
+    ) ||
+    input.hp > 150 ||
+    input.attack > 150 ||
+    input.defense > 150 ||
+    input.speed > 150;
+
+
 
     function handleChange(event){ //estp se va a ir manejando cada ves que cambien o se modifiquen mis inputs  lo que queremos es ir guardando las cosas que el usuario va escribiendo en el input en mi estado input
         setInput({ //seteame ese estado   
@@ -78,7 +95,8 @@ export default function PokemonCreate(){
 
     function handleSubmit(event){
         event.preventDefault()
-      
+        dispatch(postPokemon(input)); //despachamos la accion
+        alert("Successfully created pokemon");
         setInput({//de esta forma seteamos el input a 0 una ves creado el nuevo pokemon
         name:"",
         image:"",
@@ -92,9 +110,8 @@ export default function PokemonCreate(){
 
         })
         
-        dispatch(postPokemon(input)); //despachamos la accion
-        alert("Successfully created pokemon");
         history.push("/home");//cuando termines de crear el personaje agarra y llevame al home
+        dispatch(getPokemons());
     }
 
     function handleDelete(event){//seteo el input
@@ -251,7 +268,7 @@ export default function PokemonCreate(){
                                             
                                         </div>    
                                         
-                                        <button type="submit" className={style.button}>Create</button>
+                                        <button type="submit" disabled={btnDisabled} className={style.button}>Create</button>
                                 </div> 
                             </div>     
                         </div>  

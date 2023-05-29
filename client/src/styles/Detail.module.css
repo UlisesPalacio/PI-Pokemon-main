@@ -114,7 +114,7 @@
     align-items: center;
     width: 75px;
     height: 25px;
-    border-radius: 20px;
+    border-radius: 40px;
   }
 
   .id {
@@ -186,18 +186,60 @@
   }
 
 
-  .deleteButton { color: rgb(255, 255, 255);
-    background-color: #8b1313;
-    font-weight: 400;
-    font-size: 14px;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    margin-top: 5px;
-    padding: 0px 10px;
-  
+  .deleteButton { 
+    --color: #f01f03;
+ padding: 5px 5px;
+ background-color: transparent;
+ border-radius: .3em;
+ position: relative;
+ overflow: hidden;
+ cursor: pointer;
+ transition: .5s;
+ font-weight: 400;
+ font-size: 17px;
+ border: 1px solid;
+ font-family: inherit;
+ text-transform: uppercase;
+ color: var(--color);
+ z-index: 1;
   }
+  .deleteButton::before,.deleteButton::after{
+    content: '';
+ display: block;
+ width: 30px;
+ height: 30px;
+ transform: translate(-50%, -50%);
+ position: absolute;
+ border-radius: 50%;
+ z-index: -1;
+ background-color: var(--color);
+ transition: 1s ease;
+  }
+
+  .deleteButton::before {
+    top: -1em;
+    left: -1em;
+   }
+   
+   .deleteButton::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+   }  
+
+   .deleteButton:hover::before, .button:hover::after {
+    height: 410px;
+    width: 410px;
+   }
+   
+   .deleteButton:hover {
+    color: rgb(10, 25, 30);
+   }
+   
+   .deleteButton:active {
+    filter: brightness(.8);
+   }
+
+
   
 
   .filaStat {
