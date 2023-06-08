@@ -4,6 +4,10 @@ import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import Detail from "./components/Detail";
 import PokemonCreate from "./components/PokemonCreate";
+import axios from "axios"
+
+axios.defaults.baseURL="http://localhost:3001";
+
 
 function App() {
   return (

@@ -5,7 +5,7 @@ import { GET_POKEMONS, GET_TYPES,POKE_DETAIL, CLEAN_DETAIL,FILTER_BY_TYPE,FILTER
 export function getPokemons() {
   return async function (dispatch) {
     try{
-      var json = await axios.get("http://localhost:3001/pokemons", {}); //Conexion entre el back y el front. 3 lineas de codigo!!! por default hace axios.get
+      var json = await axios.get("/pokemons", {}); //Conexion entre el back y el front. 3 lineas de codigo!!! por default hace axios.get
       return dispatch({
         type: GET_POKEMONS,
         payload: json.data,
@@ -19,14 +19,29 @@ export function getPokemons() {
   };
 }
 
-export const getPokeDetail =(id)=>{
+//export const getPokeDetail =(id)=>{
 
-  return function(dispatch){
-      fetch(`http://localhost:3001/pokemons/${id}`)
-      .then(response => response.json())
-      .then(data => dispatch({type:POKE_DETAIL, payload:data}))
-  }
-}
+  //return function(dispatch){
+    //  fetch(`/pokemons/${id}`)
+      //.then(response => response.json())
+      //.then(data => dispatch({type:POKE_DETAIL, payload:data}))
+ // }
+//}
+
+export const getPokeDetail = (id) => {
+  return function (dispatch) {
+    axios.get(`/pokemons/${id}`)
+      .then(response => {
+        const data = response.data;
+        dispatch({ type: POKE_DETAIL, payload: data });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+};
+
+
 
 export const cleanDetail =()=>{                         //cliandetail no es mas que una funcion que retorna un objeto (3)
   return {type:CLEAN_DETAIL}
@@ -76,7 +91,7 @@ export function setError(payload) {
 }*/}
 export function deletePokemon(pokemonId) {
   return new Promise((resolve, reject) => {
-    axios.delete(`http://localhost:3001/delete/${pokemonId}`)
+    axios.delete(`/delete/${pokemonId}`)
       .then(() => {
         resolve({ type: POKE_DETAIL });
         
