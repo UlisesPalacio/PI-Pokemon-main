@@ -1,4 +1,4 @@
-import {  getPokeDetail,cleanDetail,deletePokemon,getPokemons } from "../actions/index.js";        //me traigo al action     
+import {  getPokeDetail,cleanDetail,deletePokemon,getPokemons,resetPokemons } from "../actions/index.js";        //me traigo al action     
 import { useDispatch,useSelector } from "react-redux";// use dispatch para hacer el dispatch de esa action  con use selector me traigo la info del estado global
 import { useEffect } from "react";
 import { useParams,Link,useHistory } from "react-router-dom";
@@ -26,6 +26,7 @@ const PokeDetail =()=>{
         dispatch(deletePokemon(id));
         alert("pokemon eliminado");
         history.push("/home");
+        resetPokemons()
         dispatch(getPokemons());
     };
 
@@ -135,6 +136,7 @@ const PokeDetail =()=>{
                                         >
                                         Delete Pokemon
                                     </button>
+                                    
                                     </Link>
                                 
                                 </div>

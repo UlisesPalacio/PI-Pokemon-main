@@ -76,7 +76,7 @@ export function setError(payload) {
 }*/}
 export function deletePokemon(pokemonId) {
   return new Promise((resolve, reject) => {
-    axios.delete(`/delete/${pokemonId}`)
+    axios.delete(`http://localhost:3001/delete/${pokemonId}`)
       .then(() => {
         resolve({ type: POKE_DETAIL });
         

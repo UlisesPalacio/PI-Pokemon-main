@@ -87,6 +87,7 @@ function rootReducer(state = initialState, action) {
   case DELETE_POKEMON:
     return {
         ...state,
+        allPokemons:action.payload
       };    
   case FILTER_CREATED:
       const createdFilter =

@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from "react";
 import {Link,useHistory} from "react-router-dom"
-import {postPokemon,getTypes,resetPokemons,getPokemons} from "../actions/index"
+import {postPokemon,getTypes,getPokemons} from "../actions/index"
 import {useDispatch,useSelector} from "react-redux"
 import style from "../styles/PokemonCreate.module.css"
 import oak from "../styles/img/oak2.png"
@@ -114,7 +114,7 @@ export default function PokemonCreate(){
         dispatch(getPokemons());
     }
 
-    function handleDelete(event){//seteo el input
+    function handleDelete(event){//seteo el inputz
     setInput({
         ...input,
         types: input.types.filter(typ => typ !== event)//filtramelo por todo lo que no sea ese elemento 
@@ -122,7 +122,7 @@ export default function PokemonCreate(){
 
     useEffect(()=>{ //con esto vamos a hacer el dispatch de los types por que vamos a tener que renderizarlas
         dispatch(getTypes())
-    },[])
+    },[dispatch])
 
     return( //aca viene el renderizado metemos todo en un div
         
